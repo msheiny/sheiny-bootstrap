@@ -5,3 +5,4 @@
 #
 
 include_recipe "sheiny-bootstrap::packages" 
+include_recipe "sheiny-bootstrap::homeshick" 

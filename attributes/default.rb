@@ -1,3 +1,11 @@
+require 'etc'
+
+default["sheiny-bootstrap"]["user"] = "vagrant"
+user_obj = Etc.getpwnam(node["sheiny-bootstrap"]["user"])
+default["sheiny-bootstrap"]["user_home"] = user_obj.dir
+default["sheiny-bootstrap"]["user_group"] = Etc.getgrgid(user_obj.gid).name
+
+
 default["sheiny-bootstrap"]["pkgs"] = [
   "git",
   "tmux",
@@ -43,3 +51,9 @@ if platform?("opensuse")
         "ctags"
     ])
 end
+
+gh = "https://github.com"
+default["sheiny-bootstrap"]["my_repo_name"], repo_name = "dotsheiny"
+default["sheiny-bootstrap"]["my_repo_user"], repo_user = "msheiny"
+default["sheiny-bootstrap"]["git_home"] = "#{gh}/#{repo_user}/#{repo_name}.git"
+default["sheiny-bootstrap"]["homeshick"] = "#{gh}/andsens/homeshick.git"
