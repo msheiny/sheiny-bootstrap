@@ -24,6 +24,7 @@ default["sheiny-bootstrap"]["pkgs"] = [
   "gcc",
   "make",
   "fontconfig",
+  "zsh"
 ]
 
 if platform?("ubuntu")
@@ -52,8 +53,13 @@ if platform?("opensuse")
     ])
 end
 
+
+########################## GIT ##############################################
 gh = "https://github.com"
 default["sheiny-bootstrap"]["my_repo_name"], repo_name = "dotsheiny"
 default["sheiny-bootstrap"]["my_repo_user"], repo_user = "msheiny"
 default["sheiny-bootstrap"]["git_home"] = "#{gh}/#{repo_user}/#{repo_name}.git"
 default["sheiny-bootstrap"]["homeshick"] = "#{gh}/andsens/homeshick.git"
+
+default["sheiny-bootstrap"]["ohmyzsh_repo"] = "#{gh}/robbyrussell/oh-my-zsh.git"
+
