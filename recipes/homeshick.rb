@@ -12,6 +12,13 @@ hs_clone = "#{node['sheiny-bootstrap']['my_repo_user']}/#{node['sheiny-bootstrap
     end
 end
 
+git "#{hs_loc}" do 
+    repository node["sheiny-bootstrap"]["homeshick"]
+    action :sync
+    user node["sheiny-bootstrap"]["user"]
+    group node["sheiny-bootstrap"]["user"]
+end
+
 if File.exists? "#{hs_root}/repos/#{castle}"
     execute "Update-homeshick" do 
         environment ({'HOME' => "#{node['sheiny-bootstrap']['user_home']}" })
