@@ -62,4 +62,5 @@ default["sheiny-bootstrap"]["git_home"] = "#{gh}/#{repo_user}/#{repo_name}.git"
 default["sheiny-bootstrap"]["homeshick"] = "#{gh}/andsens/homeshick.git"
 
 default["sheiny-bootstrap"]["ohmyzsh_repo"] = "#{gh}/robbyrussell/oh-my-zsh.git"
+default["sheiny-bootstrap"]["vundle_repo"] = "#{gh}/gmarik/Vundle.vim.git"
 
