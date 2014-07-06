@@ -33,7 +33,8 @@ if platform?("ubuntu")
        "python3-minimal",
        "linux-source",
        "exuberant-ctags",
-       "virtualenvwrapper"
+       "virtualenvwrapper",
+       "locate"
     ])
 end
 
