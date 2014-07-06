@@ -15,8 +15,8 @@ end
 if File.exists? "#{hs_root}/repos/#{castle}"
     execute "Update-homeshick" do 
         environment ({'HOME' => "#{node['sheiny-bootstrap']['user_home']}" })
-        command "#{hs_loc}/bin/homeshick pull -b #{castle} &&
-        #{hs_loc}/bin/homeshick link -b #{castle}"
+        command "#{hs_loc}/bin/homeshick pull -f #{castle} &&
+        #{hs_loc}/bin/homeshick link -f #{castle}"
         user node["sheiny-bootstrap"]["user"]
         action :run
     end
