@@ -53,6 +53,7 @@ if platform_family?("rhel","fedora")
             "gimp",
             "libreoffice",
             "wine",
+            "geany-plugins-markdown"
         ])
     end
 end
