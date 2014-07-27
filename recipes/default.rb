@@ -8,3 +8,6 @@ include_recipe "sheiny-bootstrap::packages"
 include_recipe "sheiny-bootstrap::homeshick" 
 include_recipe "sheiny-bootstrap::zsh" 
 include_recipe "sheiny-bootstrap::vim" 
+if %x['runlevel'].split.last == "5" then
+    include_recipe "sheiny-bootstrap::vbox" 
+end

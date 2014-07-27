@@ -79,3 +79,10 @@ default["sheiny-bootstrap"]["homeshick"] = "#{gh}/andsens/homeshick.git"
 default["sheiny-bootstrap"]["ohmyzsh_repo"] = "#{gh}/robbyrussell/oh-my-zsh.git"
 default["sheiny-bootstrap"]["vundle_repo"] = "#{gh}/gmarik/Vundle.vim.git"
 
+########################## Virtualization ###################################
+
+default["sheiny-bootstrap"]["vbox_version"] = "4.3"
+
+if platform_family?("rhel","fedora")
+    default["sheiny-bootstrap"]["vagrant_latest"] = "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm"
+end
