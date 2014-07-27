@@ -42,6 +42,13 @@ if platform_family?("rhel","fedora")
     default["sheiny-bootstrap"]["pkgs"].concat([
         "python-virtualenvwrapper",    
     ])
+
+    # Check if we are running a desktop
+    if %x['runlevel'].split.last == "5" then
+        default["sheiny-bootstrap"]["pkgs"].concat([
+            "firefox",
+        ])
+    end
 end
 
 if platform?("opensuse")
