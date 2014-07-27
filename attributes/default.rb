@@ -43,10 +43,16 @@ if platform_family?("rhel","fedora")
         "python-virtualenvwrapper",    
     ])
 
-    # Check if we are running a desktop
-    if %x['runlevel'].split.last == "5" then
+    # Check if we are running a fedora desktop
+    if %x['runlevel'].split.last == "5" and 
+      platform_family?("fedora") then
         default["sheiny-bootstrap"]["pkgs"].concat([
             "firefox",
+            "mono-core", # Needed for KeePass
+            "mono-winforms", # Needed for KeePass
+            "gimp",
+            "libreoffice",
+            "wine",
         ])
     end
 end
