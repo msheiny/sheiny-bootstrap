@@ -31,7 +31,7 @@ The quickest way to do install is to utilize `chef-zero`. Clone this project
 to `cookbooks/sheiny-bootstrap` and run:
 
 ```bash
-sudo chef-client -o "sheiny-bootstrap"
+sudo chef-client -z -o "sheiny-bootstrap"
 ```
 
 
