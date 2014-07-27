@@ -10,4 +10,5 @@ include_recipe "sheiny-bootstrap::zsh"
 include_recipe "sheiny-bootstrap::vim" 
 if %x['runlevel'].split.last == "5" then
     include_recipe "sheiny-bootstrap::vbox" 
+    include_recipe "sheiny-bootstrap::desktop" 
 end
