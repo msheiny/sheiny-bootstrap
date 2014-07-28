@@ -1,8 +1,8 @@
 Sheiny-Bootstrap Cookbook
 =========================
-Basic tools that I need to get anything done on my workstations.
+Tracking my Linux workstation settings, programs, and preferences. 
 
-Prior to Install
+Prior to First Run
 ------------
 Edit `attributes/default.rb`:
 
@@ -13,7 +13,7 @@ you'd like to install home directory modifications for
 Install
 -----
 
-Include `sheiny-bootstrap` in your node's `run_list` to install everything:
+With a Chef server, you'll want to upload `sheiny-bootstrap` to your server using knife, include `sheiny-bootstrap` in your node's `run_list`, and then run chef-client:
 
 ```json
 {
@@ -24,11 +24,7 @@ Include `sheiny-bootstrap` in your node's `run_list` to install everything:
 }
 ```
 
-Check the recipes folder to target a specific bootstrap component (such as
-setting up the home directory, installing system packages, etc.)
-
-The quickest way to do install is to utilize `chef-zero`. Clone this project
-to `cookbooks/sheiny-bootstrap` and run:
+Without running a chef server, the best way to get up and running is to utilize [Chef Zero](https://github.com/opscode/chef-zero) - which is awesome and built into the latest versions of Chef. Just clone this project to `./cookbooks/sheiny-bootstrap` and run:
 
 ```bash
 sudo chef-client -z -o "sheiny-bootstrap"
@@ -37,4 +33,4 @@ sudo chef-client -z -o "sheiny-bootstrap"
 
 License and Authors
 -------------------
-* Michael Sheinberg 
+* Michael Sheinberg <m.sheiny@gmail.com>
