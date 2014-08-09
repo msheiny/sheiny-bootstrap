@@ -43,6 +43,14 @@ if platform_family?("rhel","fedora")
         "python-virtualenvwrapper",    
     ])
 
+    # Fedora specific - universal
+    if platform_family?("fedora")
+    default["sheiny-bootstrap"]["pkgs"].concat([
+        "ImageMagick", #manipulating images via cli
+        "perl-Image-ExifTool", #manipulating images via cli
+        "simple-mtpfs",  # For mounting mtp devices in userspace
+    ])
+
     # Check if we are running a fedora desktop
     if %x['runlevel'].split.last == "5" and 
       platform_family?("fedora") then
