@@ -40,7 +40,8 @@ end
 
 if platform_family?("rhel","fedora")
     default["sheiny-bootstrap"]["pkgs"].concat([
-        "python-virtualenvwrapper",    
+        "python-virtualenvwrapper",
+        "python3-ipython"
     ])
 
     # Fedora specific - universal
