@@ -50,6 +50,7 @@ if platform_family?("rhel","fedora")
         "ImageMagick", #manipulating images via cli
         "perl-Image-ExifTool", #manipulating images via cli
         "simple-mtpfs",  # For mounting mtp devices in userspace
+        "remmina-plugins-rdp", # RDP tool
     ])
 
     # Check if we are running a fedora desktop
