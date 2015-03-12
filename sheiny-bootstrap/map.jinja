@@ -1,0 +1,15 @@
+{% set user = 'msheiny' %}
+{% set gh = "https://github.com" %}
+{% set gh_ssh = "git@github.com" %}
+
+{% load_yaml as bootstrap %}
+  user: {{ user }}
+  group: {{ user }}
+  home: /home/{{ user }}
+  my_repo_name: dotsheiny
+  git_home: {{gh_ssh}}:{{ user }}/dotsheiny.git
+  homeshick: {{ gh }}/andsens/homeshick.git
+  ohmyzsh_repo: {{ gh }}/robbyrussell/oh-my-zsh.git
+  vundle_repo: {{ gh }}/gmarik/Vundle.vim.git
+  vbox_version: 4.3
+{% endload %}
