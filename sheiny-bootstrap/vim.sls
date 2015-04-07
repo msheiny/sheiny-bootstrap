@@ -1,28 +1,28 @@
+{% from "sheiny-bootstrap/map.jinja" import config with context %}
 
-{% set home = '/home/msheiny' %}
-{% set user = 'msheiny' %}
-{% set group = 'msheiny' %}
+include:
+  - sheiny-bootstrap.homeshick
 
 {% for dir in ['.vim/bundle','.fonts','.fonts.conf.d'] %}
 Create {{ dir }}:
   file.directory:
-    - name: {{ home }}/{{ dir }}
-    - user: {{ user }}
-    - group: {{ group }}
+    - name: {{ config.home }}/{{ dir }}
+    - user: {{ config.user }}
+    - group: {{ config.group }}
     - makedirs: True
 {% endfor %}
 
 https://github.com/gmarik/Vundle.vim.git:
   git.latest:
-    - target: {{ home }}/.vim/bundle/Vundle.vim
-    - user: {{ user }}
+    - target: {{ config.home }}/.vim/bundle/Vundle.vim
+    - user: {{ config.user }}
     - rev: master
 
 vim +PluginInstall +qall:
   cmd.run:
-    - user: {{ user }}
+    - user: {{ config.user }}
     - env:
-      - HOME: {{ home }}
+      - HOME: {{ config.home }}
 
 /usr/share/fonts/PowerlineSymbols.otf:
   file.managed:

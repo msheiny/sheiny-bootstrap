@@ -11,7 +11,7 @@ Change {{ bootstrap.user }}'s shell to zsh:
   user.present:
     - name: {{ bootstrap.user }}
     - remove_groups: False
-    - shell: {{ salt['cmd.run']('which zsh') }}
+    - shell: /usr/bin/zsh
 
 {% if grains['os_family'] == 'Debian' %}
 Source profile to zshrc:

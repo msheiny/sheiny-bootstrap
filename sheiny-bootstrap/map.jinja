@@ -1,13 +1,18 @@
-{% set user = 'msheiny' %}
+{% load_yaml as config %}
+  user: msheiny
+  group: msheiny
+  home: /home/msheiny
+{% endload %}
+
 {% set gh = "https://github.com" %}
 {% set gh_ssh = "git@github.com" %}
 
 {% load_yaml as bootstrap %}
-  user: {{ user }}
-  group: {{ user }}
-  home: /home/{{ user }}
+  user: msheiny
+  group: {{ config.group }}
+  home: /home/{{ config.user }}
   my_repo_name: dotsheiny
-  git_home: {{gh_ssh}}:{{ user }}/dotsheiny.git
+  git_home: {{gh_ssh}}:msheiny/dotsheiny.git
   homeshick: {{ gh }}/andsens/homeshick.git
   ohmyzsh_repo: {{ gh }}/robbyrussell/oh-my-zsh.git
   vundle_repo: {{ gh }}/gmarik/Vundle.vim.git
