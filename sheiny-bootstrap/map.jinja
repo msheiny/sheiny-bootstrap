@@ -1,7 +1,10 @@
+{% set user = 'msheiny' %}
+
 {% load_yaml as config %}
-  user: msheiny
-  group: msheiny
-  home: /home/msheiny
+  user: {{ user }}
+  group: {{ salt['cmd.run']('id -gn '+user) }}
+  home: {{ salt['cmd.run']('su - msheiny -c "echo $HOME"') }}
+  pline_tmpdir: /tmp/pline-fonts
 {% endload %}
 
 {% set gh = "https://github.com" %}
@@ -12,9 +15,15 @@
   group: {{ config.group }}
   home: /home/{{ config.user }}
   my_repo_name: dotsheiny
-  git_home: {{gh_ssh}}:msheiny/dotsheiny.git
+  mac_castle_name: mac-specific
+  dotsheiny: {{gh}}/msheiny/dotsheiny.git
   homeshick: {{ gh }}/andsens/homeshick.git
   ohmyzsh_repo: {{ gh }}/robbyrussell/oh-my-zsh.git
   vundle_repo: {{ gh }}/gmarik/Vundle.vim.git
   vbox_version: 4.3
 {% endload %}
+
+{% set os_config = salt['grains.filter_by']({
+    'MacOS': {'font_path': config.home + '/Library/Fonts' },
+    'RedHat': {'font_path': '/usr/share/fonts'}
+}, grain='os', default='RedHat') %}

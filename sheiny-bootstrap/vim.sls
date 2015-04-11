@@ -1,4 +1,5 @@
 {% from "sheiny-bootstrap/map.jinja" import config with context %}
+{% from "sheiny-bootstrap/map.jinja" import os_config with context %}
 
 include:
   - sheiny-bootstrap.homeshick
@@ -24,13 +25,25 @@ vim +PluginInstall +qall:
     - env:
       - HOME: {{ config.home }}
 
-/usr/share/fonts/PowerlineSymbols.otf:
-  file.managed:
-    - source: salt://sheiny-bootstrap/files/powerlinesymbols.otf
+https://github.com/powerline/fonts.git:
+  git.latest:
+    - target: {{ config.pline_tmpdir }}
+    - user: {{ config.user }}
+    - rev: master
 
+Install fonts:
+  cmd.script:
+    - source: salt://sheiny-bootstrap/files/install-vim-fonts.sh
+    - user: {{ config.user }}
+    - template: jinja
+    - defaults:
+      plinefontsdir: {{ config.pline_tmpdir }}
+
+{% if grains['os'] != 'MacOS' %}
 fc-cache -vf:
   cmd.run
 
 /etc/fonts/conf.d/10-powerline-symbols.conf:
   file.managed:
     - source: salt://sheiny-bootstrap/files/10-powerline-symbols.conf
+{% endif %}

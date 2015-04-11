@@ -1,4 +1,5 @@
 Install packages:
+  {% if grains['os'] != 'MacOS' %}
   pkg.latest:
     - pkgs:
       - git
@@ -57,3 +58,11 @@ Install packages:
       - kernel-source
       - ctags
     {% endif %}
+  {% elif grains['os'] == 'MacOS' %}
+  pkg.latest:
+    - pkgs:
+      - tmux
+      - python3
+      - pyenv-virtualenvwrapper
+      - tree
+  {% endif %}

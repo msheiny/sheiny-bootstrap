@@ -2,8 +2,8 @@
 {% from "sheiny-bootstrap/map.jinja" import config with context %}
 
 {% load_yaml as hs %}
-  hs_root: "{{ bootstrap.home }}/.homesick"
-  hs_loc: {{ bootstrap.home }}/.homesick/repos/homeshick
+  hs_root: "{{ config.home }}/.homesick"
+  hs_loc: {{ config.home }}/.homesick/repos/homeshick
   castle: {{ bootstrap.my_repo_name }}
   hs_clone: {{ bootstrap.user }}/{{ bootstrap.my_repo_name }}
   user: {{ config.user }}
@@ -45,3 +45,20 @@ Link homeshick:
     - env:
       - HOME: {{ config.home }} 
 
+{% if grains['os'] == 'MacOS' %}
+
+{{ bootstrap.dotsheiny }}:
+  git.latest:
+    - rev: macosx
+    - target: {{ hs.hs_root }}/repos/{{ bootstrap.mac_castle_name }}
+    - user: {{ config.user }}
+
+Link mac-specific homeshick:
+  cmd.run:
+    - name: {{ hs.hs_loc }}/bin/homeshick link -f {{ hs.castle }}
+    - user: {{ config.user }}
+    - env:
+      - HOME: {{ config.home }} 
+    - require:
+      - git: {{ bootstrap.dotsheiny }}
+{% endif %}
