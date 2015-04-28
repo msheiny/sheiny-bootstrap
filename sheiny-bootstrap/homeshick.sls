@@ -5,7 +5,7 @@
   hs_root: "{{ config.home }}/.homesick"
   hs_loc: {{ config.home }}/.homesick/repos/homeshick
   castle: {{ bootstrap.my_repo_name }}
-  hs_clone: {{ bootstrap.user }}/{{ bootstrap.my_repo_name }}
+  hs_clone: {{ config.user }}/{{ bootstrap.my_repo_name }}
   user: {{ config.user }}
   group: {{ config.group }}
 {% endload %}

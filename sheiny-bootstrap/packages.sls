@@ -1,12 +1,15 @@
 Install packages:
-  {% if grains['os'] != 'MacOS' %}
   pkg.latest:
     - pkgs:
       - git
       - tmux
       - tree
+      - zsh
+  {% if grains['os'] != 'MacOS' %}
+      - git
+      - tmux
+      - tree
       - htop
-      - mutt
       - python-pip
       - ruby
       - tcpdump
@@ -59,10 +62,6 @@ Install packages:
       - ctags
     {% endif %}
   {% elif grains['os'] == 'MacOS' %}
-  pkg.latest:
-    - pkgs:
-      - tmux
       - python3
       - pyenv-virtualenvwrapper
-      - tree
   {% endif %}

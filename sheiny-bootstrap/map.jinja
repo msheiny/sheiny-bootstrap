@@ -3,7 +3,11 @@
 {% load_yaml as config %}
   user: {{ user }}
   group: {{ salt['cmd.run']('id -gn '+user) }}
+  {% if grains['os'] == 'MacOS' %}
+  home: {{ salt['cmd.run']('echo $HOME') }}
+  {% else %}
   home: {{ salt['cmd.run']('su - msheiny -c "echo $HOME"') }}
+  {% endif %}
   pline_tmpdir: /tmp/pline-fonts
 {% endload %}
 
@@ -11,9 +15,6 @@
 {% set gh_ssh = "git@github.com" %}
 
 {% load_yaml as bootstrap %}
-  user: msheiny
-  group: {{ config.group }}
-  home: /home/{{ config.user }}
   my_repo_name: dotsheiny
   mac_castle_name: mac-specific
   dotsheiny: {{gh}}/msheiny/dotsheiny.git
@@ -24,6 +25,10 @@
 {% endload %}
 
 {% set os_config = salt['grains.filter_by']({
-    'MacOS': {'font_path': config.home + '/Library/Fonts' },
-    'RedHat': {'font_path': '/usr/share/fonts'}
+    'MacOS': {
+        'font_path': config.home + '/Library/Fonts',
+    },
+    'RedHat': {
+        'font_path': '/usr/share/fonts'
+    }
 }, grain='os', default='RedHat') %}
