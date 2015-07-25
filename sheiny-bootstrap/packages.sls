@@ -36,6 +36,8 @@ Install packages:
       - perl-Image-ExifTool #manipulating images via cli
       - simple-mtpfs  # For mounting mtp devices in userspace
       - remmina-plugins-rdp # RDP tool
+      - python-flake8
+      - python3-flake8
       {% if salt['cmd.run']("runlevel | cut -d' ' -f 2") == '5'  %}
       - firefox
       - mono-core # Needed for KeePass
@@ -44,6 +46,7 @@ Install packages:
       - libreoffice
       - wine
       - geany-plugins-markdown
+      - wireshark
       {% endif %}
       {% if salt['cmd.run']("pgrep gnome-shell")  %}
       - gnome-tweak-tool
