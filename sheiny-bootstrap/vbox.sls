@@ -2,6 +2,12 @@
 
 {% if grains['os_family'] == 'RedHat' %}
 
+#Install Vagrant:
+#
+# Download RPM, verify hash, and install
+# 
+
+
 Install repo:
   file.managed:
     - name: /etc/yum.repos.d/virtualbox.repo
@@ -10,9 +16,12 @@ Install repo:
 Install VirtualBox packages:
   pkg.installed:
     - pkgs:
+      - kernel-devel
       - dkms
       - VirtualBox-{{ bootstrap.vbox_version }}
-      - vagrant
+      #- vagrant
     - refresh: True
+    - requires:
+      - pkg: 
 
 {% endif %}
