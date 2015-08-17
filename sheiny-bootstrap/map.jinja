@@ -1,13 +1,23 @@
 {% set user = 'msheiny' %}
+
+{% load_yaml as config %}
+  user: {{ user }}
+  group: {{ salt['cmd.run']('id -gn '+user) }}
+  {% if grains['os'] == 'MacOS' %}
+  home: {{ salt['cmd.run']('echo $HOME') }}
+  {% else %}
+  home: {{ salt['cmd.run']('su - msheiny -c "echo $HOME"') }}
+  {% endif %}
+  pline_tmpdir: /tmp/pline-fonts
+{% endload %}
+
 {% set gh = "https://github.com" %}
 {% set gh_ssh = "git@github.com" %}
 
 {% load_yaml as bootstrap %}
-  user: {{ user }}
-  group: {{ user }}
-  home: /home/{{ user }}
   my_repo_name: dotsheiny
-  git_home: {{gh_ssh}}:{{ user }}/dotsheiny.git
+  mac_castle_name: mac-specific
+  dotsheiny: {{gh}}/msheiny/dotsheiny.git
   homeshick: {{ gh }}/andsens/homeshick.git
   ohmyzsh_repo: {{ gh }}/robbyrussell/oh-my-zsh.git
   vundle_repo: {{ gh }}/gmarik/Vundle.vim.git
@@ -17,3 +27,12 @@
   compose_file: /usr/local/bin/docker-compose
   compose_hash: sha256=97ce4770d4857731d952af492800f2fcc3199e8c40b146b994ca48a912e0450c
 {% endload %}
+
+{% set os_config = salt['grains.filter_by']({
+    'MacOS': {
+        'font_path': config.home + '/Library/Fonts',
+    },
+    'RedHat': {
+        'font_path': '/usr/share/fonts'
+    }
+}, grain='os', default='RedHat') %}

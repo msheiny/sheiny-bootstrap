@@ -4,8 +4,12 @@ Install packages:
       - git
       - tmux
       - tree
+      - zsh
+  {% if grains['os'] != 'MacOS' %}
+      - git
+      - tmux
+      - tree
       - htop
-      - mutt
       - python-pip
       - ruby
       - tcpdump
@@ -64,3 +68,7 @@ Install packages:
       - kernel-source
       - ctags
     {% endif %}
+  {% elif grains['os'] == 'MacOS' %}
+      - python3
+      - pyenv-virtualenvwrapper
+  {% endif %}

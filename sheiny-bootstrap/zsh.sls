@@ -1,15 +1,16 @@
 {% from 'sheiny-bootstrap/map.jinja' import bootstrap %}
+{% from 'sheiny-bootstrap/map.jinja' import config %}
 
 Git pull down ohmyzsh:
   git.latest:
     - name: {{ bootstrap.ohmyzsh_repo }}
     - rev: master
-    - target: {{ bootstrap.home }}/.oh-my-zsh
-    - user: {{ bootstrap.user }}
+    - target: {{ config.home }}/.oh-my-zsh
+    - user: {{ config.user }}
 
-Change {{ bootstrap.user }}'s shell to zsh:
+Change {{ config.user }}'s shell to zsh:
   user.present:
-    - name: {{ bootstrap.user }}
+    - name: {{ config.user }}
     - remove_groups: False
     - shell: /usr/bin/zsh
 

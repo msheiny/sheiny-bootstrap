@@ -14,14 +14,12 @@ Local Install
 * Jump into the directory
 * Make any edits to `sheiny-bootstrap/map.jinja` necessary. Like `user`, `group`, homeshick `my_repo_name`
 * Add any packages to `sheiny-bootstrap/packages.sls`
-* Install salt-minion (recommend 2014.7.1+)
+* Install salt-minion (2014.7+)
+* Install brew (on Mac OSX)
 * Call salt-call with local options (recommend running with test=true first)
 
 ```bash
 git clone <this_git_url>
 cd sheiny-bootstrap
-sudo yum install salt-minion
 sudo salt-call --local --file-root=./ state.sls sheiny-bootstrap #test=true
 ```
-
-
