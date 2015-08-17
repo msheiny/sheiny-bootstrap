@@ -24,12 +24,14 @@ Install packages:
       - exuberant-ctags
       - virtualenvwrapper
       - locate
+      - subversion
     {% elif grains['os_family'] == 'RedHat' %}
       - python-virtualenvwrapper
       - python3-ipython
       - python3-devel
       - python3-pep8
       - python-pep8
+      - svn
       {% if grains['os'] == 'Fedora' %}
       - vim-enhanced
       - ImageMagick #manipulating images via cli
@@ -47,6 +49,8 @@ Install packages:
       - wine
       - geany-plugins-markdown
       - wireshark
+      - pidgin-otr
+      - shutter
       {% endif %}
       {% if salt['cmd.run']("pgrep gnome-shell")  %}
       - gnome-tweak-tool
