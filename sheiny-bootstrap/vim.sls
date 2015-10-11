@@ -4,6 +4,12 @@
 include:
   - sheiny-bootstrap.homeshick
 
+{% if grains['os'] == 'Fedora' %}
+Powerline package:
+  pkg.latest:
+    - name: powerline
+{% endif %}
+
 {% for dir in ['.vim/bundle','.fonts','.fonts.conf.d'] %}
 Create {{ dir }}:
   file.directory:
@@ -41,7 +47,8 @@ Install fonts:
 
 {% if grains['os'] != 'MacOS' %}
 fc-cache -vf:
-  cmd.run
+  cmd.run:
+    - user: {{ config.user }}
 
 /etc/fonts/conf.d/10-powerline-symbols.conf:
   file.managed:
