@@ -1,6 +1,10 @@
 {% from 'sheiny-bootstrap/map.jinja' import bootstrap %}
 {% from 'sheiny-bootstrap/map.jinja' import config %}
 
+Install Zsh:
+  pkg.latest:
+    - name: zsh
+
 Git pull down ohmyzsh:
   git.latest:
     - name: {{ bootstrap.ohmyzsh_repo }}
@@ -13,6 +17,8 @@ Change {{ config.user }}'s shell to zsh:
     - name: {{ config.user }}
     - remove_groups: False
     - shell: /usr/bin/zsh
+    - require:
+      - pkg:  Install Zsh
 
 {% if grains['os_family'] == 'Debian' %}
 Source profile to zshrc:
