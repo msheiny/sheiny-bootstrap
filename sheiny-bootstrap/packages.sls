@@ -1,3 +1,6 @@
+{% from 'sheiny-bootstrap/map.jinja' import pkg %}
+
+
 Install packages:
   pkg.latest:
     - pkgs:
@@ -6,6 +9,7 @@ Install packages:
       - tree
       - zsh
   {% if grains['os'] != 'MacOS' %}
+      - {{ pkg.sshfs }}
       - git
       - tmux
       - tree
@@ -55,6 +59,7 @@ Install packages:
       - wireshark
       - pidgin-otr
       - shutter
+      - hexchat
       {% endif %}
       {% if salt['cmd.run']("pgrep gnome-shell")  %}
       - gnome-tweak-tool

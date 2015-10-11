@@ -36,3 +36,12 @@
         'font_path': '/usr/share/fonts'
     }
 }, grain='os', default='RedHat') %}
+
+{% set pkg = salt['grains.filter_by']({
+    'RedHat': {
+        'sshfs': 'fuse-sshfs',
+    },
+    'Debian': {
+        'sshfs': 'sshfs'
+    }
+}, grain='os_family', default='RedHat') %}
