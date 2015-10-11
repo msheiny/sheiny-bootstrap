@@ -1,12 +1,12 @@
 {% set user = 'msheiny' %}
 
 {% load_yaml as config %}
-  user: {{ user }}
+  user: {{ user | yaml_encode }}
   group: {{ salt['cmd.run']('id -gn '+user) }}
   {% if grains['os'] == 'MacOS' %}
   home: {{ salt['cmd.run']('echo $HOME') }}
   {% else %}
-  home: {{ salt['cmd.run']('su - msheiny -c "echo $HOME"') }}
+  home: {{ salt['cmd.run']('eval echo "~%s"' %(user)) }}
   {% endif %}
   pline_tmpdir: /tmp/pline-fonts
 {% endload %}
