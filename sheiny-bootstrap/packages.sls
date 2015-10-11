@@ -63,3 +63,20 @@ Install packages:
 {% elif grains['os'] == 'MacOS' %}
       - pyenv-virtualenvwrapper
 {% endif %}
+
+
+{% if salt['cmd.run']("runlevel | cut -d' ' -f 2") == '5' and
+   grains['os'] == 'Fedora' %}
+Dropbox:
+  pkgrepo.managed:
+    - humanname: Dropbox
+    - baseurl: https://linux.dropbox.com/fedora/$releasever/
+    - gpgkey: https://linux.dropbox.com/fedora/rpm-public-key.asc
+    - gpgcheck: 1
+
+  pkg.latest:
+    - name: nautilus-dropbox
+    - refresh: True
+    - require:
+      - pkgrepo: Dropbox
+{% endif %}
