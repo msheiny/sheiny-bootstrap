@@ -40,8 +40,28 @@
 {% set pkg = salt['grains.filter_by']({
     'RedHat': {
         'sshfs': 'fuse-sshfs',
+        'svn': 'subversion',
+        'dig': 'bind-utils',
+        'vim': 'vim-enhanced',
+        'py3': 'python3',
+        'locate': 'mlocate',
+        'venvwrapper': 'python-virtualenvwrapper',
+        'pep8': 'python-pep8',
+        'ipy': 'python-ipython',
+        'ipy3': 'python3-ipython',
+        'py3dev': 'python3-devel',
     },
     'Debian': {
-        'sshfs': 'sshfs'
+        'sshfs': 'sshfs',
+        'svn': 'svn',
+        'dig': 'dnsutils',
+        'vim': 'vim',
+        'py3': 'python3-minimal',
+        'locate': 'locate',
+        'venvwrapper': 'virtualenvwrapper',
+        'pep8': 'pep8',
+        'ipy': 'ipython',
+        'ipy3': 'ipython3',
+        'py3dev': 'python3-dev',
     }
 }, grain='os_family', default='RedHat') %}

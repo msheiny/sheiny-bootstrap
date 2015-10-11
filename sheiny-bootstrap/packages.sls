@@ -7,12 +7,18 @@ Install packages:
       - git
       - tmux
       - tree
-      - zsh
-  {% if grains['os'] != 'MacOS' %}
+      - {{ pkg.svn }}
+      - {{ pkg.py3 }}
+{% if grains['os'] != 'MacOS' %}
       - {{ pkg.sshfs }}
-      - git
-      - tmux
-      - tree
+      - {{ pkg.dig }}
+      - {{ pkg.vim }}
+      - {{ pkg.locate }}
+      - {{ pkg.venvwrapper }}
+      - {{ pkg.pep8 }}
+      - {{ pkg.ipy }}
+      - {{ pkg.ipy3 }}
+      - {{ pkg.py3dev }}
       - htop
       - python-pip
       - ruby
@@ -25,23 +31,11 @@ Install packages:
       - make
       - fontconfig
       - zsh
+      - python3-pep8
     {% if grains['os'] == 'Ubuntu' %}
-      - dnsutils
-      - python3-minimal
       - linux-source
       - exuberant-ctags
-      - virtualenvwrapper
-      - locate
-      - subversion
-    {% elif grains['os_family'] == 'RedHat' %}
-      - python-virtualenvwrapper
-      - python3-ipython
-      - python3-devel
-      - python3-pep8
-      - python-pep8
-      - svn
-      {% if grains['os'] == 'Fedora' %}
-      - vim-enhanced
+    {% elif grains['os'] == 'Fedora' %}
       - ImageMagick #manipulating images via cli
       - perl-Image-ExifTool #manipulating images via cli
       - simple-mtpfs  # For mounting mtp devices in userspace
@@ -65,15 +59,7 @@ Install packages:
       - gnome-tweak-tool
       - gnome-shell-extension-user-theme
       {% endif %}
-      {% endif %}
-    {% elif grains['os'] == 'opensuse' %}
-      - bind-utils
-      - python3-base
-      - findutils-locate
-      - kernel-source
-      - ctags
     {% endif %}
-  {% elif grains['os'] == 'MacOS' %}
-      - python3
+{% elif grains['os'] == 'MacOS' %}
       - pyenv-virtualenvwrapper
-  {% endif %}
+{% endif %}
