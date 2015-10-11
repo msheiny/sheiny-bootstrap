@@ -42,10 +42,9 @@ Install packages:
       - remmina-plugins-rdp # RDP tool
       - python-flake8
       - python3-flake8
+      - keepass
       {% if salt['cmd.run']("runlevel | cut -d' ' -f 2") == '5'  %}
       - firefox
-      - mono-core # Needed for KeePass
-      - mono-winforms # Needed for KeePass
       - gimp
       - libreoffice
       - wine
