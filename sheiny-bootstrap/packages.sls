@@ -53,6 +53,7 @@ Install packages:
       - pidgin-otr
       - shutter
       - hexchat
+      - firewall-config
       {% endif %}
       {% if salt['cmd.run']("pgrep gnome-shell")  %}
       - gnome-tweak-tool
