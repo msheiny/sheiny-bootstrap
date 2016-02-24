@@ -54,6 +54,7 @@ Install packages:
       - shutter
       - hexchat
       - firewall-config
+      - redshift
       {% endif %}
       {% if salt['cmd.run']("pgrep gnome-shell")  %}
       - gnome-tweak-tool
