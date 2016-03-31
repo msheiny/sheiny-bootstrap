@@ -30,6 +30,10 @@
     url: https://releases.hashicorp.com/vagrant
     ver: 1.8.1
     hash: d2b2308cb1a7da656f6f7cd926287cd21f3c79bf29bc15f09d7471a93f1ef118
+  hub:
+    url: https://raw.githubusercontent.com/github/hub/master/etc/hub.zsh_completion
+    alg: sha256
+    hash: 9ef7c5493f698a906ae50a5b7bbbff9f97b63871e55efe3fb855cf39d6077a8c
 {% endload %}
 
 {% set os_config = salt['grains.filter_by']({

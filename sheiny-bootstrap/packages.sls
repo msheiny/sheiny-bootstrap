@@ -43,6 +43,7 @@ Install packages:
       - python-flake8
       - python3-flake8
       - keepass
+      - hub
       {% if salt['cmd.run']("runlevel | cut -d' ' -f 2") == '5'  %}
       - firefox
       - gimp

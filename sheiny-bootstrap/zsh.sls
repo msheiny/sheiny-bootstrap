@@ -26,3 +26,10 @@ Source profile to zshrc:
     - name: echo 'source /etc/profile' >> /etc/zsh/zprofile
     - unless: echo 'source /etc/profile' >> /etc/zsh/zprofile
 {% endif %}
+
+{{ config.home }}/.zsh/completions/_hub:
+  file.managed:
+    - user: {{ config.user }}
+    - makedirs: True
+    - source: {{ bootstrap.hub.url }}
+    - source_hash: {{ bootstrap.hub.alg}}={{ bootstrap.hub.hash }}
